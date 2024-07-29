@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { userRequest } from "../../requestMethod";
 import styled from "styled-components";
+import {Link} from 'react-router-dom'
 
 const Container = styled.div`
   height: 100vh;
@@ -49,7 +50,9 @@ const Success = () => {
       {orderId
         ? `Order has been created successfully. Your order number is ${orderId}`
         : `Successfull. Your order is being prepared...`}
+      <Link to="/" className="link">
       <Button style={{ padding: 10, marginTop: 20 }}>Go to Homepage</Button>
+      </Link>
     </Container>
   );
 };

@@ -186,7 +186,7 @@ const Product = () => {
                             <Amount>{quantity}</Amount>
                             <Add onClick={() => handleQuantity("inc")}/>
                         </AmountContainer>
-                        {!user ? <Button onClick={handleClick}>ADD to CART</Button> : <Link className='link' to="/login"><Button>LOGIN TO BUY</Button></Link>}
+                        {user ? <Button onClick={handleClick}>ADD to CART</Button> : <Link className='link' to="/login"><Button>LOGIN TO BUY</Button></Link>}
                     </AddContainer>
                 </InfoContainer>
             </Wrapper>

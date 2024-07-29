@@ -106,7 +106,7 @@ const Login = () => {
                     <Button onClick={handleClick} disabled={isFetching}>LOGIN</Button>
                     {error && <Error>Something went wrong...</Error>}
                     <Link style={{fontSize: '8px',marginTop: '5px'}}>HAVING TROUBLE REMEMBERING YOUR PASSWORD?</Link>
-                    <Link style={{color: 'pink'}}>CREATE A NEW ACCOUNT</Link>
+                    <Link to="/register" style={{color: 'pink'}}>CREATE A NEW ACCOUNT</Link>
                 </Form>
             </Wrapper>
         </Container>

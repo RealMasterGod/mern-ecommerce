@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:5000/api/'
-
 const getToken = () => {
     if(localStorage.getItem("persist:root")?.user) {
         return JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.user)?.currentUser?.isAdmin
@@ -12,10 +10,10 @@ const getToken = () => {
 
 const TOKEN = getToken()
 export const publicRequest = axios.create({
-    baseURL: BASE_URL
+    baseURL: import.meta.env.VITE_REACT_APP_BASE_URL
 })
 
 export const userRequest = axios.create({
-    baseURL: BASE_URL,
+    baseURL: import.meta.env.VITE_REACT_APP_BASE_URL,
     headers: {token: `Bearer ${TOKEN}`}
 })

@@ -20,8 +20,8 @@ const Products = ({ cat, filters, sort }) => {
       try {
         const res = await axios.get(
           cat
-            ? `http://localhost:5000/api/product?category=${cat}`
-            : `http://localhost:5000/api/product`
+            ? `${import.meta.env.VITE_REACT_APP_BASE_URL}product?category=${cat}`
+            : `${import.meta.env.VITE_REACT_APP_BASE_URL}product`
         );
         setProducts(res.data);
       } catch (err) {

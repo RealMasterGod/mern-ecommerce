@@ -102,7 +102,7 @@ const Navbar = () => {
                 </Center>
                 <Right>
                     {!user ? (<MenuItem><Link to={"/register"} className='link'>REGISTER</Link></MenuItem>) : (<MenuItem>{user.username}</MenuItem>)}
-                    {!user ? (<MenuItem><Link to={"/login"} className='link'>SIGN IN</Link></MenuItem>) : (<MenuItem style={{height: '40px', width: '40px', borderRadius: '50%', cursor: 'pointer'}}><Image src="https://images.pexels.com/photos/7230975/pexels-photo-7230975.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"/></MenuItem>)}
+                    {!user ? (<MenuItem><Link to={"/login"} className='link'>SIGN IN</Link></MenuItem>) : (<MenuItem style={{height: '40px', width: '40px', borderRadius: '50%', cursor: 'pointer'}}><Image src={!user.img ? "https://images.pexels.com/photos/7230975/pexels-photo-7230975.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" : user.img}/></MenuItem>)}
                     <Link style={{marginLeft: '5%'}} to="/cart">
                         <MenuItem>
                             <Badge badgeContent={quantity} color='secondary'>

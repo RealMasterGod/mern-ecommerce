@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import styled from 'styled-components'
 import { mobile } from '../../responsive'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const Container = styled.div`
     width: 100vw;
@@ -81,20 +83,40 @@ const Logo = styled.h1`
 `
 
 const Register = () => {
+    const navigate = useNavigate()
+    const handleRegister = async (e) => {
+        e.preventDefault()
+        if(passRef.current.value !== passAgainRef.current.value) {
+            passAgainRef.current.setCustomValidity("Passwords don't match!")
+        } else {
+            const formData = new FormData(e.currentTarget)
+            const {confirmPassword, ...user} = Object.fromEntries(formData)
+            try {
+                const res = await axios.post(`${import.meta.env.VITE_REACT_APP_BASE_URL}auth/register`, user)
+                navigate("/login")
+            } catch(err) {
+                window.alert('Something went wrong...This username may be taken')
+                console.log(err)
+            }
+        }
+        
+    }
+    const passRef = useRef()
+    const passAgainRef = useRef()
     return (
         <Container>
             <Wrapper>
                 <Logo>Stylix.</Logo>
                 <Title>CREATE AN ACCOUNT</Title>
-                <Form>
-                    <Input placeholder='name'/>
-                    <Input placeholder='last name'/>
-                    <Input placeholder='username'/>
-                    <Input placeholder='email'/>
-                    <Input placeholder='password'/>
-                    <Input placeholder='confirm password'/>
+                <Form onSubmit={handleRegister}>
+                    <Input name="firstName" required placeholder='first name'/>
+                    <Input name="lastName" required placeholder='last name'/>
+                    <Input name="username" required placeholder='username'/>
+                    <Input name="email" required placeholder='email'/>
+                    <Input name="password" type="password" required placeholder='password' ref={passRef}/>
+                    <Input name="confirmPassword" type="password" required placeholder='confirm password' ref={passAgainRef}/>
                     <Agreement>By creating am account, I consent to the processing of my personal data in accordance with the <b>PRIVACY POLICY</b></Agreement>
-                    <Button>CREATE</Button>
+                    <Button type="submit">CREATE</Button>
                 </Form>
             </Wrapper>
         </Container>
